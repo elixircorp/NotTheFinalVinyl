@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not The Final Vinyl</title>
+
+    <!-- Force HTTPS and disable console -->
+    <script>
+        // Force HTTPS
+        if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost') {
+            window.location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+        }
+
+        // Disable console logging completely
+        window.console = {
+            log: function() {},
+            error: function() {},
+            warn: function() {},
+            info: function() {},
+            debug: function() {},
+            trace: function() {}
+        };
+    </script>
+<meta property="al:web:url" content="https://www.notthefinalvinyl.net">
+<meta property="fb:use_secure_url" content="true">
+<meta property="og:url" content="https://www.notthefinalvinyl.net">
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="./assets/images/logo.png">
+    <link rel="apple-touch-icon" href="./assets/images/logo.png">
+    <link rel="shortcut icon" type="image/png" href="./assets/images/logo.png">
+    <link rel="manifest" href="/manifest.webmanifest">
+
+    <!-- Essential Meta Tags -->
+    <meta name="description" content="An Independent Record Label Based in Wales">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="fb:app_id" content="2230742827304314">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://notthefinalvinyl.net/">
+    <meta property="og:title" content="Not The Final Vinyl">
+    <meta property="og:description" content="An Independent Record Label Based in Wales">
+    <meta property="og:image" content="https://notthefinalvinyl.net/assets/images/capture.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Not The Final Vinyl">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://notthefinalvinyl.net/">
+    <meta name="twitter:title" content="Not The Final Vinyl">
+    <meta name="twitter:description" content="An Independent Record Label Based in Wales">
+    <meta name="twitter:image" content="https://notthefinalvinyl.net/assets/images/capture.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+
+    <!-- Three.js -->
+    <script src="https://unpkg.com/three@0.157.0/build/three.min.js"></script>
+</head>
+<body>
+    <div id="splash">
+        <img src="./assets/images/logo.png" alt="Not The Final Vinyl">
+    </div>
+    
+    <div id="gallery-loading">
+        <h1>Loading...</h1>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+    
+    <div id="permanent-logo">
+        <img src="./assets/images/logo.png" alt="Not The Final Vinyl" />
+    </div>
+    
+    <div class="instructions">
+        Swipe to Explore<br>Click to Select
+    </div>
+    
+    <div id="embed-container">
+        <div class="embed-content">
+        </div>
+    </div>
+    
+    <div id="info">
+        <div class="default-info">
+            <h1>Not The Final Vinyl</h1>
+            <h3>An Independent Record Label Based in Wales</h3>
+        </div>
+        <div class="album-info" style="display: none;">
+            <div class="album-title"></div>
+            <div class="artist"></div>
+            <div class="album-details"></div>
+        </div>
+    </div>
+    
+    <canvas id="canvas"></canvas>
+
+    <!-- Core Files -->
+    <script src="./data/links.js"></script>
+    <script src="./js/utils/Loader.js"></script>
+    <script src="./js/core/SceneManager.js"></script>
+    <script src="./js/components/Albums.js"></script>
+    <script src="./js/components/VinylManager.js"></script>
+    <script src="./js/handlers/EventHandler.js"></script>
+    <script src="./js/handlers/NavigationHandler.js"></script>
+    <script src="./js/ui/InfoDisplayBase.js"></script>
+    <script src="./js/ui/InfoDisplay.js"></script>
+    <script src="./js/core/AlbumGallery.js"></script>
+
+    <!-- Initialize gallery -->
+    <script>
+        window.addEventListener('load', function() {
+            try {
+                window.gallery = new AlbumGallery();
+            } catch (error) {
+                const loadingEl = document.getElementById('gallery-loading');
+                if (loadingEl) {
+                    loadingEl.innerHTML = `
+                        <div style="color:white;padding:20px;text-align:center;">
+                            <h2>Loading Error</h2>
+                            <p>Please try refreshing the page</p>
+                        </div>
+                    `;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
